@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: ecommerce_dev
+    ports:
+      - 5173:5173
+    volumes:
+      - .:/var/www
+    environment:
+      NODE_ENV: development
+    restart: unless-stopped

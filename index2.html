@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanStep - Sneakers Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --dark: #0a0a0a;
+            --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            margin-top: 80px;
+            height: 70vh;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), transparent),
+                        url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1600&h=900&fit=crop') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.8));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 3rem 5%;
+            background: var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-left h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .products-count {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .sort-select {
+            padding: 0.8rem 1.5rem;
+            background: var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600;
+            outline: none;
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 4rem 5%;
+            min-height: 100vh;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--gray);
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+        }
+
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--light-gray);
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-badge.new {
+            background: #00d4ff;
+        }
+
+        .product-badge.sale {
+            background: #ff3838;
+        }
+
+        .product-favorite {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .product-card:hover .product-favorite {
+            opacity: 1;
+        }
+
+        .product-favorite:hover {
+            transform: scale(1.1);
+            background: var(--primary);
+        }
+
+        .product-favorite:hover svg {
+            stroke: white;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .color-dot:hover {
+            border-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .product-price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .product-old-price {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .quick-add {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--primary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .quick-add:hover {
+            transform: rotate(90deg);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 5%;
+            background: var(--gray);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-content .highlight {
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/5;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), #ff8c42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links a {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">UrbanStep</div>
+        <div class="nav-links">
+            <a href="#products">Produtos</a>
+            <a href="#about">Sobre</a>
+            <a href="#contact">Contato</a>
+            <div class="cart-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Nova Coleção 2026</h1>
+            <p>Descubra os sneakers mais exclusivos e modernos do mercado</p>
+            <a href="#products" class="hero-btn">Explorar Coleção</a>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section" id="products">
+        <div class="filter-left">
+            <h2>Todos os Produtos</h2>
+            <p class="products-count">48 produtos disponíveis</p>
+        </div>
+        <div class="filter-controls">
+            <button class="filter-btn active">Todos</button>
+            <button class="filter-btn">Running</button>
+            <button class="filter-btn">Casual</button>
+            <button class="filter-btn">Basketball</button>
+            <select class="sort-select">
+                <option>Mais Relevantes</option>
+                <option>Menor Preço</option>
+                <option>Maior Preço</option>
+                <option>Mais Vendidos</option>
+                <option>Lançamentos</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop" alt="Air Max Velocity" class="product-image">
+                    <span class="product-badge new">Novo</span>
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Running</p>
+                    <h3 class="product-name">Air Max Velocity</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #1a1a1a"></div>
+                        <div class="color-dot" style="background: #ffffff; border: 1px solid #333"></div>
+                        <div class="color-dot" style="background: #667eea"></div>
+                        <div class="color-dot" style="background: #ff6b6b"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 899</span>
+                            <span class="product-old-price">R$ 1.299</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop" alt="Nike Zoom" class="product-image">
+                    <span class="product-badge sale">-25%</span>
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Running</p>
+                    <h3 class="product-name">Nike Zoom Fly</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #e67e22"></div>
+                        <div class="color-dot" style="background: #2c3e50"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 699</span>
+                            <span class="product-old-price">R$ 949</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&h=600&fit=crop" alt="Adidas NMD" class="product-image">
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual</p>
+                    <h3 class="product-name">Adidas NMD R1</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #1a1a1a"></div>
+                        <div class="color-dot" style="background: #e74c3c"></div>
+                        <div class="color-dot" style="background: #3498db"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 799</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&h=600&fit=crop" alt="Puma RS-X" class="product-image">
+                    <span class="product-badge new">Novo</span>
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Running</p>
+                    <h3 class="product-name">Puma RS-X</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #ffffff; border: 1px solid #333"></div>
+                        <div class="color-dot" style="background: #f39c12"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 649</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600&h=600&fit=crop" alt="New Balance 574" class="product-image">
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual</p>
+                    <h3 class="product-name">New Balance 574</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #7f8c8d"></div>
+                        <div class="color-dot" style="background: #2c3e50"></div>
+                        <div class="color-dot" style="background: #27ae60"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 549</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Sobre a <span class="highlight">UrbanStep</span></h2>
+                <p>
+                    Somos apaixonados por sneakers e por proporcionar experiências únicas aos nossos clientes. Desde 2018, trabalhamos com as melhores marcas do mundo para trazer até você os modelos mais exclusivos e desejados.
+                </p>
+                <p>
+                    Nossa missão é democratizar o acesso aos melhores sneakers do mercado, oferecendo autenticidade garantida, preços justos e um atendimento excepcional.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Clientes Felizes</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Modelos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Autênticos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=1000&fit=crop" alt="Nossa loja">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>UrbanStep</h3>
+                <p>Os melhores sneakers premium do mercado. Autenticidade garantida e entrega para todo o Brasil.</p>
+                <div class="social-links">
+                    <div class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <div class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                    <div class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </div>
+                    <div class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Produtos</h4>
+                <ul>
+                    <li><a href="#">Running</a></li>
+                    <li><a href="#">Casual</a></li>
+                    <li><a href="#">Basketball</a></li>
+                    <li><a href="#">Lançamentos</a></li>
+                    <li><a href="#">Promoções</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Empresa</h4>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Carreiras</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Imprensa</a></li>
+                    <li><a href="#">Parceiros</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Suporte</h4>
+                <ul>
+                    <li><a href="#">Central de Ajuda</a></li>
+                    <li><a href="#">Rastreamento</a></li>
+                    <li><a href="#">Trocas e Devoluções</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 UrbanStep. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html> height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&h=600&fit=crop" alt="Ultra Boost Pro" class="product-image">
+                    <span class="product-badge sale">-30%</span>
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual</p>
+                    <h3 class="product-name">Ultra Boost Pro</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #2c3e50"></div>
+                        <div class="color-dot" style="background: #e74c3c"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 749</span>
+                            <span class="product-old-price">R$ 1.099</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600&h=600&fit=crop" alt="Jordan Retro" class="product-image">
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Basketball</p>
+                    <h3 class="product-name">Jordan Retro Classic</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #c0392b"></div>
+                        <div class="color-dot" style="background: #1a1a1a"></div>
+                        <div class="color-dot" style="background: #ffffff; border: 1px solid #333"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 1.199</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=600&fit=crop" alt="Yeezy Boost" class="product-image">
+                    <span class="product-badge new">Novo</span>
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual</p>
+                    <h3 class="product-name">Yeezy Boost 350</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #95a5a6"></div>
+                        <div class="color-dot" style="background: #34495e"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 1.499</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=600&fit=crop" alt="Classic Leather" class="product-image">
+                    <button class="product-favorite">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Casual</p>
+                    <h3 class="product-name">Classic Leather White</h3>
+                    <div class="product-colors">
+                        <div class="color-dot" style="background: #ffffff; border: 1px solid #333"></div>
+                        <div class="color-dot" style="background: #1a1a1a"></div>
+                        <div class="color-dot" style="background: #3498db"></div>
+                    </div>
+                    <div class="product-price-container">
+                        <div>
+                            <span class="product-price">R$ 599</span>
+                        </div>
+                        <button class="quick-add">
+                            <svg width="20"
