@@ -52,3 +52,9 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Curiosidades
+
+- Tailwind VS Bootstrap, o que houve?
+
+- Vite VS Webpack, desuso?
