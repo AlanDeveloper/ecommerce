@@ -1,11 +1,5 @@
-export interface Category {
-  name: string
-}
-
-export interface Flag {
-  name: string
-  bg_color: string
-}
+import type { Category } from './Category'
+import type { Flag } from './Flag'
 
 export interface Sneaker {
   id: number

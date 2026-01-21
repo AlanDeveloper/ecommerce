@@ -8,9 +8,11 @@ export const sneakersMock: Sneaker[] = [
     price: 899.0,
     src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop',
     category: {
+      id: 1,
       name: 'RUNNING',
     },
     flag: {
+      id: 1,
       name: 'Novo',
       bg_color: '#00d4ff',
     },
@@ -22,9 +24,11 @@ export const sneakersMock: Sneaker[] = [
     price: 699.0,
     src: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop',
     category: {
+      id: 1,
       name: 'RUNNING',
     },
     flag: {
+      id: 3,
       name: '-25%',
       bg_color: '#ff3838',
     },
@@ -36,6 +40,7 @@ export const sneakersMock: Sneaker[] = [
     price: 549.0,
     src: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600&h=600&fit=crop',
     category: {
+      id: 2,
       name: 'CASUAL',
     },
   },
@@ -46,9 +51,11 @@ export const sneakersMock: Sneaker[] = [
     price: 649.0,
     src: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&h=600&fit=crop',
     category: {
+      id: 1,
       name: 'RUNNING',
     },
     flag: {
+      id: 1,
       name: 'Novo',
       bg_color: '#00d4ff',
     },
