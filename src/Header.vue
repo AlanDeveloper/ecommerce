@@ -27,7 +27,7 @@ const closeMenu = (): void => {
     <ul class="flex flex-col gap-6 p-6">
       <li><a @click="closeMenu">Produtos</a></li>
       <li><a @click="closeMenu">Sobre</a></li>
-      <li><a @click="closeMenu">Contatos</a></li>
+      <li><a @click="closeMenu" href="#about">Contatos</a></li>
     </ul>
   </aside>
 
@@ -39,7 +39,7 @@ const closeMenu = (): void => {
     <div class="flex items-center gap-6">
       <ul class="hidden md:flex gap-10 list-none">
         <li><a class="hover:text-[#ff6b35] cursor-pointer">Produtos</a></li>
-        <li><a class="hover:text-[#ff6b35] cursor-pointer">Sobre</a></li>
+        <li><a class="hover:text-[#ff6b35] cursor-pointer" href="#about">Sobre</a></li>
         <li><a class="hover:text-[#ff6b35] cursor-pointer">Contatos</a></li>
       </ul>
 
