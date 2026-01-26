@@ -15,7 +15,7 @@ const formatPrice = (value: number) => {
 
 <template>
   <div
-    class="group text-white bg-[#1a1a1a] relative rounded-lg overflow-hidden max-w-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-[#ff6b35]/50"
+    class="group text-white bg-secondary relative rounded-lg overflow-hidden max-w-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-primary/50"
   >
     <span
       v-if="sneaker.flag"
@@ -51,7 +51,7 @@ const formatPrice = (value: number) => {
         </div>
         <button
           aria-label="Adicionar ao carrinho"
-          class="h-12 w-12 bg-[#ff6b35] rounded-md font-bold hover:bg-[#ff8555] duration-300 transition-all hover:rotate-90 cursor-pointer"
+          class="h-12 w-12 bg-primary rounded-md font-bold hover:bg-[#ff8555] duration-300 transition-all hover:rotate-90 cursor-pointer"
         >
           +
         </button>

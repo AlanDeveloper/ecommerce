@@ -31,15 +31,15 @@ const cartCount = ref(0)
     </div>
     <ul class="flex flex-col gap-6 p-6">
       <li>
-        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#products"
+        <a @click="closeMenu" class="hover:text-primary cursor-pointer" href="#products"
           >Produtos</a
         >
       </li>
       <li>
-        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#about">Sobre</a>
+        <a @click="closeMenu" class="hover:text-primary cursor-pointer" href="#about">Sobre</a>
       </li>
       <li>
-        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#contacts"
+        <a @click="closeMenu" class="hover:text-primary cursor-pointer" href="#contacts"
           >Contatos</a
         >
       </li>
@@ -53,9 +53,9 @@ const cartCount = ref(0)
 
     <div class="flex items-center gap-6">
       <ul class="hidden md:flex gap-10 list-none">
-        <li><a class="hover:text-[#ff6b35] cursor-pointer" href="#products">Produtos</a></li>
-        <li><a class="hover:text-[#ff6b35] cursor-pointer" href="#about">Sobre</a></li>
-        <li><a class="hover:text-[#ff6b35] cursor-pointer" href="#contacts">Contatos</a></li>
+        <li><a class="hover:text-primary cursor-pointer" href="#products">Produtos</a></li>
+        <li><a class="hover:text-primary cursor-pointer" href="#about">Sobre</a></li>
+        <li><a class="hover:text-primary cursor-pointer" href="#contacts">Contatos</a></li>
       </ul>
 
       <button class="cursor-pointer md:hidden text-2xl" @click="openMenu" aria-label="Abrir menu">
@@ -77,7 +77,7 @@ const cartCount = ref(0)
         </svg>
 
         <span
-          class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center text-xs font-bold text-white bg-[#ff6b35] rounded-full"
+          class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center text-xs font-bold text-white bg-primary rounded-full"
         >
           {{ cartCount }}
         </span>

@@ -21,7 +21,7 @@
       </p>
       <a
         href="#products"
-        class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-[#ff6b35] text-white font-semibold rounded-full text-base sm:text-lg transition-all duration-300 hover:bg-orange-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/40 active:scale-95"
+        class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white font-semibold rounded-full text-base sm:text-lg transition-all duration-300 hover:bg-orange-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/40 active:scale-95"
       >
         Explorar Coleção
       </a>

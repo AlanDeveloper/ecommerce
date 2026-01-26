@@ -16,11 +16,11 @@ const emit = defineEmits<{
 <template>
   <div
     id="products"
-    class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-0 bg-[#1a1a1a] text-white p-5 md:p-8 lg:px-20 lg:py-12"
+    class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-0 bg-secondary text-white p-5 md:p-8 lg:px-20 lg:py-12"
   >
     <div>
       <h1 class="text-xl lg:text-2xl font-bold">Todos os produtos</h1>
-      <p class="text-[#a0a0a0] text-sm lg:text-base">
+      <p class="text-secondary-text text-sm lg:text-base">
         {{
           filteredSneakers.length != 1
             ? `${filteredSneakers.length} produtos disponíveis`
@@ -33,7 +33,7 @@ const emit = defineEmits<{
         @click="emit('update:activeCategory', 0)"
         :class="[
           'text-white px-6 lg:px-8 py-3 lg:py-4 text-sm lg:text-base h-min rounded-2xl transition-colors whitespace-nowrap cursor-pointer',
-          activeCategory === 0 ? 'bg-[#ff6b35]' : 'bg-[#2a2a2a] hover:bg-[#ff6b35]',
+          activeCategory === 0 ? 'bg-primary' : 'bg-[#2a2a2a] hover:bg-primary',
         ]"
       >
         Todos
@@ -44,7 +44,7 @@ const emit = defineEmits<{
         @click="emit('update:activeCategory', category.id)"
         :class="[
           'text-white px-6 lg:px-8 py-3 lg:py-4 text-sm lg:text-base h-min rounded-2xl transition-colors whitespace-nowrap cursor-pointer',
-          activeCategory === category.id ? 'bg-[#ff6b35]' : 'bg-[#2a2a2a] hover:bg-[#ff6b35]',
+          activeCategory === category.id ? 'bg-primary' : 'bg-[#2a2a2a] hover:bg-primary',
         ]"
       >
         {{ category.name }}

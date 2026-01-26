@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <footer class="bg-black text-[#a0a0a0] p-5 md:p-8 lg:px-20 lg:py-12" id="contacts">
+  <footer class="bg-black text-secondary-text p-5 md:p-8 lg:px-20 lg:py-12" id="contacts">
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 lg:gap-12 mb-8 md:mb-12"
     >
@@ -20,7 +20,7 @@ defineProps<{
         <div class="flex flex-row flex-wrap gap-4 md:justify-start">
           <a
             href=""
-            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-[#ff6b35] hover:-translate-y-1 transition-all duration-300"
+            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-primary hover:-translate-y-1 transition-all duration-300"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -30,7 +30,7 @@ defineProps<{
           </a>
           <a
             href=""
-            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-[#ff6b35] hover:-translate-y-1 transition-all duration-300"
+            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-primary hover:-translate-y-1 transition-all duration-300"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -40,7 +40,7 @@ defineProps<{
           </a>
           <a
             href=""
-            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-[#ff6b35] hover:-translate-y-1 transition-all duration-300"
+            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-primary hover:-translate-y-1 transition-all duration-300"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -50,7 +50,7 @@ defineProps<{
           </a>
           <a
             href=""
-            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-[#ff6b35] hover:-translate-y-1 transition-all duration-300"
+            class="text-white p-3 rounded-full bg-[#2a2a2a] hover:bg-primary hover:-translate-y-1 transition-all duration-300"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -64,11 +64,9 @@ defineProps<{
         <h3 class="text-white mb-3">Produtos</h3>
         <ul class="flex flex-col gap-1.25 list-none">
           <li v-for="category in categories" :key="category.id">
-            <a
-              href="#"
-              class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
-              >{{ category.name }}</a
-            >
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer">{{
+              category.name
+            }}</a>
           </li>
         </ul>
       </div>
@@ -76,17 +74,17 @@ defineProps<{
         <h3 class="text-white mb-3">Empresa</h3>
         <ul class="flex flex-col gap-1.25 list-none">
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Sobre nós</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Carreiras</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Blog</a
             >
           </li>
@@ -96,27 +94,27 @@ defineProps<{
         <h3 class="text-white mb-3">Suporte</h3>
         <ul class="flex flex-col gap-1.25 list-none">
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Central de ajuda</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Rastreamento</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Trocas e devoluções</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Política de Privacidade</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-[#ff6b35] transition-colors duration-300 cursor-pointer"
+            <a href="#" class="hover:text-primary transition-colors duration-300 cursor-pointer"
               >Termos de Uso</a
             >
           </li>
