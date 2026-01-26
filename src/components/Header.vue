@@ -12,6 +12,8 @@ const closeMenu = (): void => {
   isMenuOpen.value = false
   document.body.style.overflow = ''
 }
+
+const cartCount = ref(0)
 </script>
 <template>
   <div
@@ -24,10 +26,23 @@ const closeMenu = (): void => {
     class="fixed top-0 right-0 h-full w-64 bg-black text-white z-50 transform transition-transform duration-300 ease-in-out md:hidden"
     :class="isMenuOpen ? 'translate-x-0' : 'translate-x-full'"
   >
+    <div class="flex justify-end p-4">
+      <button @click="closeMenu" class="cursor-pointer" aria-label="Fechar menu">✕</button>
+    </div>
     <ul class="flex flex-col gap-6 p-6">
-      <li><a @click="closeMenu" href="#products">Produtos</a></li>
-      <li><a @click="closeMenu" href="#about">Sobre</a></li>
-      <li><a @click="closeMenu" href="#contacts">Contatos</a></li>
+      <li>
+        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#products"
+          >Produtos</a
+        >
+      </li>
+      <li>
+        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#about">Sobre</a>
+      </li>
+      <li>
+        <a @click="closeMenu" class="hover:text-[#ff6b35] cursor-pointer" href="#contacts"
+          >Contatos</a
+        >
+      </li>
     </ul>
   </aside>
 
@@ -43,7 +58,9 @@ const closeMenu = (): void => {
         <li><a class="hover:text-[#ff6b35] cursor-pointer" href="#contacts">Contatos</a></li>
       </ul>
 
-      <button class="md:hidden text-2xl" @click="openMenu" aria-label="Abrir menu">☰</button>
+      <button class="cursor-pointer md:hidden text-2xl" @click="openMenu" aria-label="Abrir menu">
+        ☰
+      </button>
 
       <div class="relative cursor-pointer hover:scale-110 transition-transform duration-300">
         <svg
@@ -62,7 +79,7 @@ const closeMenu = (): void => {
         <span
           class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center text-xs font-bold text-white bg-[#ff6b35] rounded-full"
         >
-          0
+          {{ cartCount }}
         </span>
       </div>
     </div>
