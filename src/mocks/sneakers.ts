@@ -60,4 +60,31 @@ export const sneakersMock: Sneaker[] = [
       bg_color: '#00d4ff',
     },
   },
+  {
+    id: 5,
+    name: 'Nike Court Borough',
+    originalPrice: 899.0,
+    price: 749.0,
+    src: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600&h=600&fit=crop&crop=left',
+    category: {
+      id: 1,
+      name: 'RUNNING',
+    },
+    flag: {
+      id: 3,
+      name: '-15%',
+      bg_color: '#ff3838',
+    },
+  },
+  {
+    id: 6,
+    name: 'Puma Rickie',
+    originalPrice: 799.0,
+    price: 699.0,
+    src: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&h=600&fit=crop&crop=left',
+    category: {
+      id: 2,
+      name: 'CASUAL',
+    },
+  },
 ]
