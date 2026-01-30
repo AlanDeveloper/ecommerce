@@ -42,7 +42,7 @@ const cartStore = useCartStore()
               <div
                 v-for="item in cartStore.items"
                 :key="`${item.id}-${item.selectedSize}`"
-                class="bg-secondary rounded-xl p-4 md:p-6 flex flex-col sm:flex-row gap-4 md:gap-6 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                class="bg-secondary rounded-xl p-4 md:p-6 flex flex-col sm:flex-row gap-4 md:gap-6 transition-all duration-300"
               >
                 <div
                   class="w-full sm:w-32 md:w-40 h-32 md:h-40 flex-shrink-0 bg-black rounded-lg overflow-hidden"
@@ -65,7 +65,7 @@ const cartStore = useCartStore()
                       <div class="flex items-center gap-2 bg-black rounded-lg p-1">
                         <button
                           @click="cartStore.updateQuantity(item.id, item.quantity - 1)"
-                          class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                          class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors duration-300 font-bold disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                           :disabled="item.quantity <= 1"
                         >
                           −
@@ -73,7 +73,7 @@ const cartStore = useCartStore()
                         <span class="w-8 text-center font-medium">{{ item.quantity }}</span>
                         <button
                           @click="cartStore.updateQuantity(item.id, item.quantity + 1)"
-                          class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors duration-300 font-bold"
+                          class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors duration-300 font-bold cursor-pointer"
                         >
                           +
                         </button>
@@ -95,7 +95,7 @@ const cartStore = useCartStore()
                     </div>
                     <button
                       @click="cartStore.removeFromCart(item.id)"
-                      class="text-sm text-secondary-text hover:text-red-500 transition-colors duration-300 underline"
+                      class="text-sm text-secondary-text hover:text-red-500 transition-colors duration-300 underline cursor-pointer"
                     >
                       Remover
                     </button>
@@ -133,7 +133,7 @@ const cartStore = useCartStore()
                 </div>
 
                 <button
-                  class="w-full px-8 py-4 bg-primary text-white font-bold rounded-full text-lg transition-all duration-300 hover:bg-orange-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-500/50 active:scale-95 mb-4"
+                  class="w-full px-8 py-4 bg-primary text-white font-bold rounded-full text-lg transition-all duration-300 hover:bg-orange-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-500/50 active:scale-95 mb-4 cursor-pointer"
                 >
                   Finalizar Compra
                 </button>
