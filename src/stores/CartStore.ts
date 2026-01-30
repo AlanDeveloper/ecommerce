@@ -1,11 +1,18 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import type { Sneaker } from '@/types/Sneaker'
 import type { CartItem } from '@/types/CartItem'
 
 export const useCartStore = defineStore('cart', () => {
-  const items = ref<CartItem[]>([])
+  const items = ref<CartItem[]>(JSON.parse(sessionStorage.getItem('cart') || '[]'))
 
+  watch(
+    items,
+    (newItems) => {
+      sessionStorage.setItem('cart', JSON.stringify(newItems))
+    },
+    { deep: true },
+  )
   const addToCart = (sneaker: Sneaker, size: number = 42) => {
     const existingItem = items.value.find(
       (item) => item.id === sneaker.id && item.selectedSize === size,
