@@ -1,13 +1,11 @@
 services:
   app:
-    container_name: ecommerce_dev
+    container_name: ecommerce_prod
     build:
       context: .
-      target: development
+      target: production
     ports:
       - '5173:5173'
-    volumes:
-      - .:/var/www
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
     restart: unless-stopped
