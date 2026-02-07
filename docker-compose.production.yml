@@ -1,16 +1,16 @@
 services:
   app:
-    container_name: ecommerce_prod
-    image: ghcr.io/alandeveloper/ecommerce:latest
+    container_name: kicks_prod
+    image: ghcr.io/alandeveloper/kicks:latest
     restart: unless-stopped
     networks:
       - traefik-network
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.ecommerce.rule=Host(`kicks.alandeveloper.com.br`)'
-      - 'traefik.http.routers.ecommerce.entrypoints=web'
-      - 'traefik.http.routers.ecommerce.service=ecommerce'
-      - 'traefik.http.services.ecommerce.loadbalancer.server.port=80'
+      - 'traefik.http.routers.kicks.rule=Host(`kicks.alandeveloper.com.br`)'
+      - 'traefik.http.routers.kicks.entrypoints=web'
+      - 'traefik.http.routers.kicks.service=kicks'
+      - 'traefik.http.services.kicks.loadbalancer.server.port=80'
 
 networks:
   traefik-network:

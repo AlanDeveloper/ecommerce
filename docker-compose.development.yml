@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: ecommerce_dev
+    container_name: kicks_dev
     build:
       context: .
       target: development
