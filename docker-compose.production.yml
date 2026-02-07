@@ -1,11 +1,20 @@
+version: '3.8'
+
 services:
   app:
     container_name: ecommerce_prod
-    build:
-      context: .
-      target: production
-    ports:
-      - '5173:5173'
+    image: ghcr.io/alandeveloper/ecommerce:latest
     environment:
       NODE_ENV: production
     restart: unless-stopped
+    networks:
+      - traefik-network
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.ecommerce.rule=Host(`kicks.alandeveloper.com.br`)'
+      - 'traefik.http.routers.ecommerce.entrypoints=web'
+      - 'traefik.http.services.ecommerce.loadbalancer.server.port=5173'
+
+networks:
+  traefik-network:
+    external: true

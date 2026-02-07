@@ -37,9 +37,18 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-      # - name: Deploy the app
-      #   uses: digitalocean/app_action/deploy@v2
-      #   env:
-      #     SAMPLE_DIGEST: ${{ steps.push.outputs.digest }}
-      #   with:
-      #     token: ${{ secrets.YOUR_DIGITALOCEAN_ACCESS_TOKEN_VARIABLE_NAME }}
+      - name: Deploy to Droplet
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/ecommerce
+
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            docker compose -f docker-compose.production.yml pull
+            docker compose -f docker-compose.production.yml up -d --force-recreate
+
+            docker image prune -af
